@@ -54,8 +54,8 @@ finish = False
 clock = pygame.time.Clock()
 FPS = 60
 
-racket1 = Player('racket.png', 30, 200, 4, 50, 150)
-racket2 = Player('racket.png', 1120, 200, 4, 50, 150)
+racket1 = Player('racket.png', 30, 200, 4, 50, 150, 0)
+racket2 = Player('racket.png', 1120, 200, 4, 50, 150, 0)
 ball = GameSprite('tenis_ball.png', 200, 200, 4, 50, 50)
 
 speed_x = 0
