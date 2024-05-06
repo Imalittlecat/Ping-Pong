@@ -80,7 +80,9 @@ while game:
             speed_y *= -1
 
         if ball.rect.x < 0:
-            finish = True
+            racket1.point += 1
+            if racket1.point > 5:
+                finish = True
             window.blit(lose1, (200, 200))
             game_over = True
 
