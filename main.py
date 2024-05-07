@@ -38,17 +38,27 @@ class Player(GameSprite):
                 self.rect.y = 550
 
 
+img_back = 'galaxy.jpg'
+img_asteroid = 'asteroid.png'
+img_ball1 = 'tenis_ball.png'
+img_racket = 'racket.png'
+
+
 pygame.font.init()
 font1 = pygame.font.Font(None, 80)
 lose1 = font1.render('PLAYER 1 LOSE!', True, (180, 0, 0))
 lose2 = font1.render('PLAYER 2 LOSE!', True, (180, 0, 0))
 
+pygame.mixer.init()
+pygame.mixer.music.load('space.ogg')
+pygame.mixer.music.play()
+
 
 width = 1200
 height = 700
-background = (200, 255, 255)
+background = pygame.transform.scale(pygame.image.load(img_back), (width, height))
 window = pygame.display.set_mode((width, height))
-window.fill(background)
+
 
 
 game = True
@@ -56,19 +66,19 @@ finish = False
 clock = pygame.time.Clock()
 FPS = 60
 
-racket1 = Player('racket.png', 30, 200, 4, 50, 150, 0)
-racket2 = Player('racket.png', 1120, 200, 4, 50, 150, 0)
-ball = GameSprite('tenis_ball.png', 200, 200, 4, 50, 50)
+racket1 = Player(img_racket, 30, 200, 4, 50, 150, 0)
+racket2 = Player(img_racket, 1120, 200, 4, 50, 150, 0)
+ball = GameSprite(img_asteroid, 200, 200, 4, 50, 50)
 
-speed_x = 0
-speed_y = 0
+speed_x = 5
+speed_y = 5
 
 while game:
     for e in pygame.event.get():
         if e.type == pygame.QUIT:
             game = False
     if finish != True:
-        window.fill(background)
+        window.blit(background, (0, 0))
         racket1.update_l()
         racket2.update_r()
         ball.rect.x += speed_x
