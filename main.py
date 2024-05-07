@@ -5,7 +5,7 @@ from pygame.locals import *
 #from time import time as timer
 
 class GameSprite(pygame.sprite.Sprite):
-    def __init__(self, player_image, player_x, player_y,player_speed, size_x, size_y, points):
+    def __init__(self, player_image, player_x, player_y,player_speed, size_x, size_y):
         pygame.sprite.Sprite.__init__(self)
         #super().__init__()
         self.image = pygame.transform.scale(pygame.image.load(player_image), (size_x, size_y))
@@ -13,11 +13,13 @@ class GameSprite(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = player_x
         self.rect.y = player_y
-        self.points = points
     def reset(self):
         window.blit(self.image, (self.rect.x, self.rect.y))
 
 class Player(GameSprite):
+    def __init__(self, player_image, player_x, player_y, player_speed, size_x, size_y, points):
+        super().__init__(player_image, player_x, player_y, player_speed, size_x, size_y)
+        self.points = points
     def update_l(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_UP] and self.rect.y > 5:
